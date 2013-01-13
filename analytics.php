@@ -25,7 +25,7 @@ class analytics {
 	
 	public function __construct($secret, $user_id, $session_id = null) {
 		$this->secret = $secret;
-		$this->user_id = $user_id;
+		$this->user_id = "$user_id"; // Quote to convert to string in case coming as int
 		$this->session_id = $session_id;
 	}
 	
@@ -89,7 +89,7 @@ class analytics {
 		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		
-		if ($status_code != 200) {
+		/*if ($status_code != 200) {
 			// Handle errors here
 			// For now, Im letting things degrade gracefully
 			// If you want to throw exceptions, uncomment below
@@ -102,7 +102,7 @@ class analytics {
 				$error .= " ($code): $message";
 			
 			throw new Exception($error);			
-		}
+		}*/
 	}
 }
 ?>
